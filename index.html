@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+  </head>
+  <body>
+    <script type="module">
+      import init, { sign, keyPair, verify } from './pkg/ed25519_zebra.js';
+
+      async function run() {
+        await init()
+
+        const message = Uint8Array.from([1,2,3]);
+        const [sk, vk] = keyPair()
+        const signature = sign(message, sk);
+        console.log(verify(message, signature, vk))
+      }
+
+      run();
+    </script>
+  </body>
+</html>
